@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Neha</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      height: 100vh;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #FFB6C1, #FFD700);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      position: relative;
+      padding-bottom: 100px;
+    }
+
+    .intro-screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.8);
+      z-index: 1000;
+      flex-direction: column;
+    }
+
+    .intro-button {
+      padding: 20px 40px;
+      font-size: 24px;
+      background-color: #FF69B4;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+      margin-bottom: 20px;
+    }
+
+    .intro-button:hover {
+      background-color: #FF1493;
+    }
+
+    .greeting-card {
+      display: none;
+      background-color: #ffecb3;
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 500px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      animation: fadeInGreetingCard 2s ease-out forwards;
+    }
+
+    @keyframes fadeInGreetingCard {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .title {
+      font-size: 3rem;
+      color: #FF6347;
+      margin-bottom: 10px;
+    }
+
+    .message {
+      font-size: 1.5rem;
+      color: #333;
+      margin-top: 20px;
+    }
+
+    .timer {
+      font-size: 1.5rem;
+      color: #FF6347;
+      font-weight: bold;
+    }
+
+    #next-button {
+      display: none;
+      padding: 15px 30px;
+      font-size: 20px;
+      background-color: #FF69B4;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+      margin-top: 20px;
+    }
+
+    #next-button:hover {
+      background-color: #FF1493;
+    }
+
+    /* Slideshow */
+    #slideshow {
+      display: none;
+      width: 100%;
+      height: 400px;
+      margin-top: 40px;
+    }
+
+    #slideshow img {
+  display: none;
+  max-width: 100%;
+  height: auto;
+  animation: fadeInOut 1s ease-in-out;
+}
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; }
+      50% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    .audio-control {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.7);
+      border: none;
+      border-radius: 50%;
+      padding: 10px;
+      cursor: pointer;
+      font-size: 24px;
+      z-index: 999;
+    }
+
+    /* Confetti */
+    .confetti {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 500;
+      pointer-events: none;
+    }
+
+    .confetti div {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #FFD700;
+      animation: confettiFall 5s infinite ease-in-out;
+    }
+
+    @keyframes confettiFall {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Confetti -->
+  <div class="confetti">
+    <div style="left: 10%; animation-delay: 0s;"></div>
+    <div style="left: 20%; animation-delay: 1s;"></div>
+    <div style="left: 30%; animation-delay: 2s;"></div>
+    <div style="left: 40%; animation-delay: 3s;"></div>
+    <div style="left: 50%; animation-delay: 4s;"></div>
+  </div>
+
+  <!-- Intro Screen -->
+  <div class="intro-screen" id="intro-screen">
+    <button class="intro-button" id="enter-button">Click to Enter</button>
+    <div class="timer" id="timer"></div>
+  </div>
+
+  <!-- Greeting Card -->
+  <div class="greeting-card" id="greeting-card">
+    <h1 class="title">Happy Birthday, Neha!</h1>
+    <p class="message">Wishing you a day filled with love, laughter, and all your favorite things!</p>
+  </div>
+
+  <!-- Slideshow -->
+  <div id="slideshow">
+    <img src="https://i.ibb.co/Q32NyvD2/IMG-20240814-WA0001.jpg" alt="Pic 1">
+    <img src="https://i.ibb.co/1tk04h15/IMG-20240814-WA0004.jpg" alt="Pic 2">
+    <img src="https://i.ibb.co/qFMbTQ42/IMG-20241223-WA0032.jpg" alt="Pic 3">
+    <img src="https://i.ibb.co/zWYHq850/IMG-20241225-WA0010.jpg" alt="Pic 4">
+    <img src="https://i.ibb.co/KkxMKtm/IMG-20241223-WA0015.jpg" alt="Pic 5">
+    <img src="https://i.ibb.co/F4XZMbQ4/IMG-20241218-WA0002.jpg" alt="Pic 6">
+    <img src="https://i.ibb.co/5Xy8zXT3/IMG-20250105-WA0025.jpg" alt="pic 7">
+    <img src="https://i.ibb.co/tTYn6gV2/IMG-20241212-WA0001.jpg" alt="Pic 8">
+    <img src="https://i.ibb.co/whZrx1m6/IMG-20241202-WA0026.jpg" alt="Pic 9">
+    <img src="https://i.ibb.co/x8zH7Nnb/IMG-20241227-WA0050.jpg" alt="Pic 10">
+    <img src="https://i.ibb.co/JWPgKKQ3/IMG-20240820-WA0012.jpg" alt="Pic 11">
+    <img src="https://i.ibb.co/Y73jMMvN/IMG-20240902-WA0144.jpg" alt="Pic 12">
+    <img src="https://i.ibb.co/DfVWYYYC/IMG-20240922-WA0034.jpg" alt="Pic 13">
+    <img src="https://i.ibb.co/jkWJ0KSp/IMG-20240925-WA0007.jpg" alt="Pic 14">
+    <img src="https://i.ibb.co/605CZWpK/IMG-20241110-WA0005.jpg" alt="Pic 15">
+    <img src="https://i.ibb.co/MxRmkL0T/IMG-20241110-WA0009.jpg" alt="Pic 16">
+    <img src="https://i.ibb.co/5xCknwbB/IMG-20241125-WA0022.jpg" alt="Pic 17">
+    <img src="https://i.ibb.co/pvkhCs2w/IMG-20241123-WA0010.jpg" alt="Pic 18">
+    <img src="https://i.ibb.co/nqXSLycV/IMG-20241126-WA0019.jpg" alt="Pic 19">
+    <img src="https://i.ibb.co/Swb99q58/IMG-20241126-WA0031.jpg" alt="Pic 20">
+    <img src="https://i.ibb.co/605CZWpK/IMG-20241110-WA0005.jpg" alt="Pic 21">
+    <img src="https://i.ibb.co/5Xy8zXT3/IMG-20250105-WA0025.jpg" alt="Pic 22">
+    <img src="https://i.ibb.co/hRkkhgV1/IMG-20250113-WA0017.jpg" alt="Pic 23">
+    <img src="https://i.ibb.co/k26ZmgzT/20250305-184239.jpg" alt="Pic 24">
+    <img src="https://i.ibb.co/r2ZjT33p/20250305-184650.jpg" alt="Pic 25">
+    <img src="https://i.ibb.co/q3CRfW9W/20250108-163258.jpg" alt="Pic 26">
+    <img src="https://i.ibb.co/HpF96jNq/20250220-183337.jpg" alt="pic 27">
+    <img src="https://i.ibb.co/gbFKzRKX/IMG-20250421-WA0039.jpg" alt="Pic 28">
+    <img src="https://i.ibb.co/MDnbx01b/IMG-20250421-WA0035.jpg" alt="Pic 29">
+    <img src="https://i.ibb.co/Mkbf37Vp/20250108-162734.jpg" alt="Pic 30">
+    <img src="https://i.ibb.co/QFC3pSmT/20241121-183232.jpg" alt="Pic 31">
+    <img src="https://i.ibb.co/Ng3MQs0f/IMG-20250402-WA0033.jpg" alt="Pic 32">
+    <img src="https://i.ibb.co/0Rbb7qRq/20250305-182752.jpg" alt="Pic 33">
+    <img src="https://i.ibb.co/qMR1QCC1/IMG-20250309-WA0000.jpg" alt="Pic 34">
+    <img src="https://i.ibb.co/5hhnqz3X/IMG-20250314-WA0022.jpg" alt="Pic 35">
+    <img src="https://i.ibb.co/j9R03kLp/IMG-20250412-WA0009.jpg" alt="Pic 36">
+    <img src="https://i.ibb.co/ycp00r8f/IMG-20250418-WA0068.jpg" alt="Pic 37">
+    <img src="https://i.ibb.co/m59L4QV7/20250108-151909.jpg" alt="Pic 38">
+    <img src="https://i.ibb.co/sdJQqJmk/IMG-20250118-WA0026.jpg" alt="Pic 39">
+    <img src="https://i.ibb.co/BVPmXKtg/IMG-20250124-WA0029.jpg" alt="Pic 40">
+    <img src="https://i.ibb.co/Tx57SKTs/IMG-20250126-WA0010.jpg" alt="Pic 41">
+    <img src="https://i.ibb.co/RpbzKnk6/IMG-20250131-WA0024.jpg" alt="Pic 42">
+    <img src="https://i.ibb.co/FfzzBTY/IMG-20250217-WA0004.jpg" alt="Pic 43">
+    <img src="https://i.ibb.co/mVCcTq08/20250317-182032.jpg" alt="Pic 44">
+    <img src="https://i.ibb.co/gF3YQj5G/20250421-173148.jpg" alt="Pic 45">
+    <img src="https://i.ibb.co/tM1kTsmf/20240918-191516.jpg" alt="Pic 46">
+    <img src="https://i.ibb.co/6kSgsYm/20250327-181545.jpg" alt="pic 47">
+    <!-- Add more images as needed -->
+  </div>
+
+  <!-- Next Button -->
+  <button id="next-button">Next</button>
+  
+  <!-- Birthday Letter Button -->
+<a href="letter.html">
+  <button id="letter-button" class="intro-button">Read Birthday Letter</button>
+</a>
+
+  <!-- Audio Control -->
+  <button class="audio-control" id="audio-control">🔊</button>
+
+  <!-- Background Music -->
+<audio id="birthday-audio" autoplay loop>
+  <source src="https://ucdc52f62680acc2ae78707aed8f.dl.dropboxusercontent.com/cd/0/inline/Co6qIGlLWC7rf0TC81yBTLoPbgwBUPZoWxLvjQ2_chwvrdZd8-rorywOtfH2rhUVb0zanBJQtdeSnrDsJJgcLYnDsEYcbTF-Uuid8bVmM4c9obQhVwje7mMgL-lWSJNa4D0gt2SybO1Dkq1eKKvzVHlk/file?raw=1" type="audio/mpeg">
+</audio>
+
+  <!-- Script -->
+  <script>
+    const introScreen = document.getElementById('intro-screen');
+    const enterButton = document.getElementById('enter-button');
+    const greetingCard = document.getElementById('greeting-card');
+    const nextButton = document.getElementById('next-button');
+    const slideshow = document.getElementById('slideshow');
+    const images = document.querySelectorAll('#slideshow img');
+    const audio = document.getElementById('birthday-audio');
+    const audioControl = document.getElementById('audio-control');
+    const timerElement = document.getElementById('timer');
+    const birthdayDate = new Date('May 18, 2025 00:00:00');
+
+    function updateTimer() {
+      const currentTime = new Date();
+      const timeDifference = birthdayDate - currentTime;
+      if (timeDifference <= 0) {
+        clearInterval(timerInterval);
+        introScreen.style.display = 'none';
+        greetingCard.style.display = 'block';
+        nextButton.style.display = 'block'; // Show next button after greeting
+        audio.play();
+      } else {
+        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+        timerElement.textContent = `Time Left: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }
+    }
+
+    const timerInterval = setInterval(updateTimer, 1000);
+
+    enterButton.addEventListener('click', () => {
+      introScreen.style.display = 'none';
+      greetingCard.style.display = 'block';
+      audio.play();
+      nextButton.style.display = 'block';
+    });
+
+    nextButton.addEventListener('click', () => {
+      nextButton.style.display = 'none';
+      slideshow.style.display = 'block';
+
+      let currentIndex = 0;
+      function showNextImage() {
+        images.forEach((img, index) => {
+          img.style.display = 'none';
+        });
+        images[currentIndex].style.display = 'block';
+        currentIndex = (currentIndex + 1) % images.length;
+      }
+
+      setInterval(showNextImage, 1500); // Change image every 1.5 seconds
+      showNextImage(); // Initial image display
+    });
+
+    audioControl.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        audioControl.textContent = '🔊';
+      } else {
+        audio.pause();
+        audioControl.textContent = '🔇';
+      }
+    });
+  </script>
+</body>
+</html>
