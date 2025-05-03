@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Happy Birthday Neha - AR</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@6.1.1/dist/aframe-extras.loaders.min.js"></script>
+  </head>
+  <body style="margin: 0; overflow: hidden;">
+    <a-scene embedded arjs="trackingMethod: best;">
+      <a-assets>
+        <!-- Load 3D Cake and Balloons -->
+        <a-asset-item id="cake" src="https://cdn.glitch.global/86c07ed2-63e5-44fc-8a93-c187ab2d4a5f/birthday_cake.glb?v=1680103284970"></a-asset-item>
+        <a-asset-item id="balloons" src="https://cdn.glitch.global/86c07ed2-63e5-44fc-8a93-c187ab2d4a5f/balloons.glb?v=1680103553640"></a-asset-item>
+        <!-- Load music -->
+        <audio id="birthday-music" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_336b0162f5.mp3" preload="auto"></audio>
+      </a-assets>
+
+      <!-- 3D Cake and Balloons in World Tracking -->
+      <a-entity gltf-model="#cake" scale="0.5 0.5 0.5" position="0 0 0.1"></a-entity>
+      <a-entity gltf-model="#balloons" scale="0.5 0.5 0.5" position="0 0.5 0">
+        <a-animation attribute="position" to="0 1 0" direction="alternate" dur="2000" repeat="indefinite"></a-animation>
+      </a-entity>
+
+      <!-- Music -->
+      <a-entity sound="src: #birthday-music; autoplay: true; loop: true"></a-entity>
+
+      <a-entity camera></a-entity>
+    </a-scene>
+  </body>
+</html>
